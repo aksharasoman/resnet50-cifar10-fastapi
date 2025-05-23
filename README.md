@@ -2,7 +2,7 @@
 
 This project trains a ResNet-50 model on the CIFAR-10 dataset and deploys it as a web API using FastAPI and Docker.
 
----
+<!-- --- -->
 
 ## Project Overview
 
@@ -10,7 +10,7 @@ This project trains a ResNet-50 model on the CIFAR-10 dataset and deploys it as 
 - **Model**: ResNet-50 (PyTorch, pretrained on ImageNet, fine-tuned on CIFAR-10)
 - **Deployment**: FastAPI + Docker container
 
----
+<!-- --- -->
 
 ## How to Run
 
