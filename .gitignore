@@ -1,0 +1,43 @@
+# Byte-compiled / cache files
+__pycache__/
+*.py[cod]
+*.pyo
+**/__pycache__/
+
+
+
+# Virtual environment
+venv/
+env/
+.venv/
+ENV/
+
+# PyTorch model checkpoints
+*.pth
+*.pt
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Logs and outputs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Docker
+*.dockerignore
+
+# Python packaging
+*.egg-info/
+dist/
+build/
+
+# IDE / Editor folders
+.vscode/
+.idea/
+
+# Misc
+*.bak
+
