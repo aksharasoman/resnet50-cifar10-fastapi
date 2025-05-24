@@ -1,4 +1,4 @@
-# -- Python details Compute Canada
+# Python details Compute Canada
 1. module avail python : list available versions of python
  ipython-kernel/3.10              
  ipython-kernel/3.11    python/3.10.13            
@@ -28,6 +28,7 @@ create in home directory/[inside jobs](https://docs.alliancecan.ca/wiki/Python#C
 Load the same environment modules that you loaded when you created the virtual environment, e.g. `module load python scipy-stack`
 Activate the environment, `source ~/.venvs/venv/bin/activate`
 
-7. Allot interative window with GPU 
+7. Allot interactive job with GPU (compute node)
 `salloc --time=1:00:00 --gres=gpu:1 --cpus-per-task=4 --mem=16G --account=def-mushrifs  `
+note: compute nodes don't have internet access. you will have to install missing python packages to venv, data or pretained model etc from a login node.
 
