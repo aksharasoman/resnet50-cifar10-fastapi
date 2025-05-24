@@ -32,3 +32,7 @@ Activate the environment, `source ~/.venvs/venv/bin/activate`
 `salloc --time=1:00:00 --gres=gpu:1 --cpus-per-task=4 --mem=16G --account=def-mushrifs  `
 note: compute nodes don't have internet access. you will have to install missing python packages to venv, data or pretained model etc from a login node.
 
+
+### Relevant links
+https://docs.alliancecan.ca/wiki/Tutoriel_Apprentissage_machine/en
+
