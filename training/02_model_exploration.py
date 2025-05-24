@@ -3,6 +3,12 @@ import torch
 import torchvision.models as models
 import torch.nn as nn
 
+if torch.cuda.is_available():
+    print("✅ GPU is available")
+    print("Device name:", torch.cuda.get_device_name(0))
+else:
+    print("❌ GPU is not available")
+# %%
 from train import load_data
 
 train_loader = load_data(is_train=True, batch_size=64)  # Load training data
