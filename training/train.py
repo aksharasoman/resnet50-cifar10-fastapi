@@ -2,6 +2,8 @@
 import torch
 import torchvision
 import torchvision.transforms as transforms
+import torchvision.models as models
+import torch.nn as nn
 from torch.utils.data import DataLoader
 # from utils import train_model  # assuming you have this in utils.py
 
@@ -48,14 +50,27 @@ def main():
     train_loader = load_data(is_train=True, batch_size=64)  # Load training data
     test_loader = load_data(is_train=False, batch_size=256)  # Load testing data
 
+    ## Model Loading
+    # Load pretrained RESNET-50 model
+    model = models.resnet50(weights=models.ResNet50_Weights.DEFAULT)
+    
+    # Freeze all, then unfreeze what I want
+    for param in model.parameters():
+        param.requires_grad = False
+    
+    # Modify final layer to match 10 output classes of CIFAR-10 dataset
+    num_ftrs = model.fc.in_features
+    model.fc = nn.Linear(num_ftrs,10)
 
-    # # Example: Replace with your actual ResNet-50 model setup
-    # model = torchvision.models.resnet50(pretrained=False, num_classes=10)
-
-    # device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    # model = model.to(device)
-
-    # # Example: Call your training loop
+    # Unfreeze only final layer for training
+    for param in model.fc.parameters():
+        param.requires_grad = True
+    
+    # Move model to gpu
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    model = model.to(device)
+    
+    ## Call your training loop
     # train_model(model, train_loader, device=device)
 
 if __name__ == "__main__":
