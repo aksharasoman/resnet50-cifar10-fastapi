@@ -179,7 +179,7 @@ def main():
     
     print('3. Training...')
     ## Call your training loop    
-    train_model(model, train_loader, test_loader, criterion, optimizer, num_epochs=10, device=device)
+    train_model(model, train_loader, test_loader, criterion, optimizer, num_epochs=50, device=device)
 
 if __name__ == "__main__":
     main()
