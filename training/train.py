@@ -71,6 +71,7 @@ def train_model(model, train_loader, test_loader, criterion, optimizer, num_epoc
             # Track number of correctly predicted samples for accuracy.
             _, predicted = torch.max(outputs.data, 1) # outputs contains raw scores (logits) for each class.
             correct += (predicted == labels).sum().item()
+            total += labels.size(0)
             
             # Progress Display:
             loop.set_postfix(loss=loss.item(), acc=100*correct/total)
