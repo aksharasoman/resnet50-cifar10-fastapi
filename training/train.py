@@ -42,7 +42,7 @@ def load_data(is_train = True, batch_size: int = 64) -> DataLoader:
 
     data_set = torchvision.datasets.CIFAR10(
         root='./data', train=is_train, download=True, transform=transform)
-    data_loader = DataLoader(data_set, batch_size=batch_size, shuffle=True, num_workers=2)
+    data_loader = DataLoader(data_set, batch_size=batch_size, shuffle=is_train, num_workers=2)
     
     return data_loader
 
@@ -52,17 +52,17 @@ def train_model(model, train_loader, test_loader, criterion, optimizer, num_epoc
     train_losses, val_losses = [], []
     train_accuracies, val_accuracies = [], []   
      
-    for epoch in range(num_epochs):
+    for epoch in tqdm(range(num_epochs)):
         model.train() # Sets the model to training mode
         running_loss = 0.0
         correct = 0
         total = 0
         
-        loop = tqdm(train_loader, desc=f"Epoch [{epoch+1}/{num_epochs}]") # ?
+        # loop = tqdm(train_loader, desc=f"Epoch [{epoch+1}/{num_epochs}]") # ?
         
         # Standard PyTorch training step for each batch: 
         #   forward pass → compute loss → backprop → update weights.
-        for images, labels in loop: # Each batch is fetched from the loader
+        for images, labels in train_loader: # Each batch is fetched from the loader
             images, labels = images.to(device), labels.to(device)
             optimizer.zero_grad() #  clears old gradients from the previous step, so they don't accumulate during backpropagation.
             outputs = model(images)
@@ -77,7 +77,7 @@ def train_model(model, train_loader, test_loader, criterion, optimizer, num_epoc
             running_loss += loss.item()
             
             # Progress Display:
-            loop.set_postfix(loss=loss.item(), acc=100*correct/total)
+            # loop.set_postfix(loss=loss.item(), acc=100*correct/total)
         
         train_acc = 100 * correct / total
         # Validation
@@ -175,7 +175,7 @@ def main():
     
     # Define Loss and Optimizer
     criterion = nn.CrossEntropyLoss()
-    optimizer = optim.Adam(model.fc.parameters(), lr=0.001) # only update classifier layer (final fc layer)
+    optimizer = optim.Adam(model.fc.parameters(), lr=0.0001) # only update classifier layer (final fc layer)
     
     print('3. Training...')
     ## Call your training loop    
