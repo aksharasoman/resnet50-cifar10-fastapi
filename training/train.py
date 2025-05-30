@@ -23,22 +23,22 @@ def load_data(is_train = True, batch_size: int = 64) -> DataLoader:
         DataLoader: DataLoader for the dataset.
     """
     # Define the transformation for training and testing
-    if is_train:
-        transform = transforms.Compose([
-            transforms.RandomCrop(32, padding=4),
-            transforms.RandomHorizontalFlip(),
-            transforms.ToTensor(),
-            transforms.Normalize(mean=(0.4914, 0.4822, 0.4465), # precomputed mean and std dev values for CIFAR-10
-                                 std=(0.2023, 0.1994, 0.2010))
-        ])
-    else:
+    # if is_train:
+    #     transform = transforms.Compose([
+    #         transforms.RandomCrop(32, padding=4),
+    #         transforms.RandomHorizontalFlip(),
+    #         transforms.ToTensor(),
+    #         transforms.Normalize(mean=(0.4914, 0.4822, 0.4465), # precomputed mean and std dev values for CIFAR-10
+    #                              std=(0.2023, 0.1994, 0.2010))
+    #     ])
+    # else:
         # For testing, we only normalize the images
         # without any augmentation
-        transform = transforms.Compose([
-            transforms.ToTensor(),
-            transforms.Normalize(mean=(0.4914, 0.4822, 0.4465),
-                                std=(0.2023, 0.1994, 0.2010))
-        ])
+    transform = transforms.Compose([
+        transforms.ToTensor(),
+        transforms.Normalize(mean=(0.4914, 0.4822, 0.4465),
+                            std=(0.2023, 0.1994, 0.2010))
+    ])
 
     data_set = torchvision.datasets.CIFAR10(
         root='./data', train=is_train, download=True, transform=transform)
@@ -82,6 +82,7 @@ def train_model(model, train_loader, test_loader, criterion, optimizer, num_epoc
         train_acc = 100 * correct / total
         # Validation
         val_acc, val_loss = evaluate(model, test_loader, criterion, device)
+        print(f"\nTraining Accuracy after Epoch {epoch+1}: {train_acc:.2f}%")
         print(f"\nValidation Accuracy after Epoch {epoch+1}: {val_acc:.2f}%")
         
         train_losses.append(running_loss / len(train_loader))
