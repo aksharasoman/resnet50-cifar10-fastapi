@@ -79,7 +79,7 @@ def train_model(model, train_loader, test_loader, criterion, optimizer, num_epoc
     # Plot training curves
     plot_metrics(train_losses, val_losses, train_accuracies, val_accuracies)
 
-def plot_metrics(train_losses, val_losses, train_accuracies, val_accuracies):
+def plot_metrics(train_losses, val_losses, train_accuracies, val_accuracies, save_path='training_metrics.png'):
     epochs = range(1, len(train_losses) + 1)
 
     plt.figure(figsize=(12, 5))
@@ -103,7 +103,7 @@ def plot_metrics(train_losses, val_losses, train_accuracies, val_accuracies):
     plt.legend()
 
     plt.tight_layout()
-    plt.show()
-
+    plt.savefig(save_path)
+    plt.close()  # Close the figure to free memory
 # Call training
 train_model(model, train_loader, test_loader, criterion, optimizer, num_epochs=10, device=device, save_interval=2)

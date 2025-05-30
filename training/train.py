@@ -7,6 +7,7 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader
 from tqdm import tqdm
+import matplotlib.pyplot as plt
 # from utils import train_model  # assuming you have this in utils.py
 
 def load_data(is_train = True, batch_size: int = 64) -> DataLoader:
@@ -48,7 +49,9 @@ def load_data(is_train = True, batch_size: int = 64) -> DataLoader:
 # Training Loop
 def train_model(model, train_loader, test_loader, criterion, optimizer, num_epochs=10, device = "cpu"):
     best_acc = 0.0
-    
+    train_losses, val_losses = [], []
+    train_accuracies, val_accuracies = [], []   
+     
     for epoch in range(num_epochs):
         model.train() # Sets the model to training mode
         running_loss = 0.0
@@ -63,7 +66,6 @@ def train_model(model, train_loader, test_loader, criterion, optimizer, num_epoc
             images, labels = images.to(device), labels.to(device)
             optimizer.zero_grad() #  clears old gradients from the previous step, so they don't accumulate during backpropagation.
             outputs = model(images)
-            print(f'Output Shape:{outputs.shape}')
             loss = criterion(outputs, labels)
             loss.backward()
             optimizer.step()
@@ -72,25 +74,63 @@ def train_model(model, train_loader, test_loader, criterion, optimizer, num_epoc
             _, predicted = torch.max(outputs.data, 1) # outputs contains raw scores (logits) for each class.
             correct += (predicted == labels).sum().item()
             total += labels.size(0)
+            running_loss += loss.item()
             
             # Progress Display:
             loop.set_postfix(loss=loss.item(), acc=100*correct/total)
-            
+        
+        train_acc = 100 * correct / total
         # Validation
-        val_acc = evaluate(model, test_loader, device)
+        val_acc, val_loss = evaluate(model, test_loader, criterion, device)
         print(f"\nValidation Accuracy after Epoch {epoch+1}: {val_acc:.2f}%")
         
-                # Save the best model
+        train_losses.append(running_loss / len(train_loader))
+        val_losses.append(val_loss)
+        train_accuracies.append(train_acc)
+        val_accuracies.append(val_acc)
+        
+        # Save the best model
         if val_acc > best_acc:
             best_acc = val_acc
             torch.save(model.state_dict(), 'best_model.pth')
             print("Best model saved.")
 
+    # (Save) Plot training curves
+    plot_metrics(train_losses, val_losses, train_accuracies, val_accuracies)
+
+def plot_metrics(train_losses, val_losses, train_accuracies, val_accuracies, save_path='training_metrics.png'):
+    epochs = range(1, len(train_losses) + 1)
+
+    plt.figure(figsize=(12, 5))
+
+    # Loss Plot
+    plt.subplot(1, 2, 1)
+    plt.plot(epochs, train_losses, 'b-', label='Train Loss')
+    plt.plot(epochs, val_losses, 'r-', label='Val Loss')
+    plt.title('Loss per Epoch')
+    plt.xlabel('Epoch')
+    plt.ylabel('Loss')
+    plt.legend()
+
+    # Accuracy Plot
+    plt.subplot(1, 2, 2)
+    plt.plot(epochs, train_accuracies, 'b-', label='Train Acc')
+    plt.plot(epochs, val_accuracies, 'r-', label='Val Acc')
+    plt.title('Accuracy per Epoch')
+    plt.xlabel('Epoch')
+    plt.ylabel('Accuracy (%)')
+    plt.legend()
+
+    plt.tight_layout()
+    plt.savefig(save_path)
+    plt.close()  # Close the figure to free memory
+
 # Evaluation function
-def evaluate(model, dataloader, device='cpu'):
+def evaluate(model, dataloader, criterion, device='cpu'):
     model.eval()
     correct = 0
     total = 0
+    total_loss = 0
 
     with torch.no_grad():
         for images, labels in dataloader:
@@ -99,8 +139,10 @@ def evaluate(model, dataloader, device='cpu'):
             _, predicted = torch.max(outputs.data, 1)
             total += labels.size(0)
             correct += (predicted == labels).sum().item()
-
-    return 100 * correct / total
+            loss = criterion(outputs,labels)
+            total_loss += loss.item()
+    avg_loss = total_loss/len(dataloader)
+    return 100 * correct / total, avg_loss
 
 def main():
     """
