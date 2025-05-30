@@ -60,6 +60,7 @@ def train_model(model, train_loader, test_loader, criterion, optimizer, num_epoc
         # Standard PyTorch training step for each batch: 
         #   forward pass → compute loss → backprop → update weights.
         for images, labels in loop: # Each batch is fetched from the loader
+            images, labels = images.to(device), labels.to(device)
             optimizer.zero_grad() #  clears old gradients from the previous step, so they don't accumulate during backpropagation.
             outputs = model(images)
             print(f'Output Shape:{outputs.shape}')
