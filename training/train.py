@@ -47,7 +47,7 @@ def load_data(is_train = True, batch_size: int = 64) -> DataLoader:
     return data_loader
 
 # Training Loop
-def train_model(model, train_loader, test_loader, criterion, optimizer, num_epochs=10, device = "cpu"):
+def train_model(model, train_loader, test_loader, criterion, optimizer, scheduler, num_epochs=10, device = "cpu"):
     best_acc = 0.0
     train_losses, val_losses = [], []
     train_accuracies, val_accuracies = [], []   
@@ -84,7 +84,9 @@ def train_model(model, train_loader, test_loader, criterion, optimizer, num_epoc
         val_acc, val_loss = evaluate(model, test_loader, criterion, device)
         print(f"\nTraining Accuracy after Epoch {epoch+1}: {train_acc:.2f}%")
         print(f"\nValidation Accuracy after Epoch {epoch+1}: {val_acc:.2f}%")
-        
+        if scheduler:
+            scheduler.step(val_acc)  # only once per epoch
+            
         train_losses.append(running_loss / len(train_loader))
         val_losses.append(val_loss)
         train_accuracies.append(train_acc)
@@ -164,7 +166,11 @@ def main():
     
     # Modify final layer to match 10 output classes of CIFAR-10 dataset
     num_ftrs = model.fc.in_features
-    model.fc = nn.Linear(num_ftrs,10)
+    # model.fc = nn.Linear(num_ftrs,10)
+    model.fc = nn.Sequential(
+        nn.Dropout(0.3),
+        nn.Linear(num_ftrs,10)
+    )
 
     # Unfreeze only final layer for training
     for param in model.fc.parameters():
@@ -177,10 +183,11 @@ def main():
     # Define Loss and Optimizer
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.fc.parameters(), lr=0.0001) # only update classifier layer (final fc layer)
+    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='max', factor=0.5, patience=3)
     
     print('3. Training...')
     ## Call your training loop    
-    train_model(model, train_loader, test_loader, criterion, optimizer, num_epochs=50, device=device)
+    train_model(model, train_loader, test_loader, criterion, optimizer, scheduler, num_epochs=50, device=device)
 
 if __name__ == "__main__":
     main()
