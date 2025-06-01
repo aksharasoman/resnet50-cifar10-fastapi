@@ -32,22 +32,22 @@ def load_data(is_train = True, batch_size: int = 64) -> DataLoader:
         DataLoader: DataLoader for the dataset.
     """
     # Define the transformation for training and testing
-    # if is_train:
-    #     transform = transforms.Compose([
-    #         transforms.RandomCrop(32, padding=4),
-    #         transforms.RandomHorizontalFlip(),
-    #         transforms.ToTensor(),
-    #         transforms.Normalize(mean=(0.4914, 0.4822, 0.4465), # precomputed mean and std dev values for CIFAR-10
-    #                              std=(0.2023, 0.1994, 0.2010))
-    #     ])
-    # else:
+    if is_train:
+        transform = transforms.Compose([
+            transforms.RandomCrop(32, padding=4),
+            transforms.RandomHorizontalFlip(),
+            transforms.ToTensor(),
+            transforms.Normalize(mean=(0.4914, 0.4822, 0.4465), # precomputed mean and std dev values for CIFAR-10
+                                 std=(0.2023, 0.1994, 0.2010))
+        ])
+    else:
         # For testing, we only normalize the images
         # without any augmentation
-    transform = transforms.Compose([
-        transforms.ToTensor(),
-        transforms.Normalize(mean=(0.4914, 0.4822, 0.4465),
-                            std=(0.2023, 0.1994, 0.2010))
-    ])
+        transform = transforms.Compose([
+            transforms.ToTensor(),
+            transforms.Normalize(mean=(0.4914, 0.4822, 0.4465),
+                                std=(0.2023, 0.1994, 0.2010))
+        ])
 
     data_set = torchvision.datasets.CIFAR10(
         root='./data', train=is_train, download=True, transform=transform)
@@ -66,9 +66,7 @@ def train_model(model, train_loader, test_loader, criterion, optimizer, num_epoc
         running_loss = 0.0
         correct = 0
         total = 0
-        
-        # loop = tqdm(train_loader, desc=f"Epoch [{epoch+1}/{num_epochs}]") # ?
-        
+                
         # Standard PyTorch training step for each batch: 
         #   forward pass → compute loss → backprop → update weights.
         for images, labels in train_loader: # Each batch is fetched from the loader
@@ -84,9 +82,6 @@ def train_model(model, train_loader, test_loader, criterion, optimizer, num_epoc
             correct += (predicted == labels).sum().item()
             total += labels.size(0)
             running_loss += loss.item()
-            
-            # Progress Display:
-            # loop.set_postfix(loss=loss.item(), acc=100*correct/total)
         
         train_acc = 100 * correct / total
         # Validation
