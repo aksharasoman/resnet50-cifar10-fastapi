@@ -8,8 +8,17 @@ import torch.optim as optim
 from torch.utils.data import DataLoader
 from tqdm import tqdm
 import matplotlib.pyplot as plt
-# from utils import train_model  # assuming you have this in utils.py
+import random
+import numpy as np
 
+def set_seed(seed=42):
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
+    
 def load_data(is_train = True, batch_size: int = 64) -> DataLoader:
     """
     Loads and preprocesses the CIFAR-10 training dataset.
@@ -47,7 +56,7 @@ def load_data(is_train = True, batch_size: int = 64) -> DataLoader:
     return data_loader
 
 # Training Loop
-def train_model(model, train_loader, test_loader, criterion, optimizer, scheduler, num_epochs=10, device = "cpu"):
+def train_model(model, train_loader, test_loader, criterion, optimizer, num_epochs=10, device = "cpu"):
     best_acc = 0.0
     train_losses, val_losses = [], []
     train_accuracies, val_accuracies = [], []   
@@ -151,6 +160,7 @@ def main():
     """
     Main function to load data, initialize model, and start training.
     """
+    set_seed()
     print('1. Data Loading...')
     train_loader = load_data(is_train=True, batch_size=64)  # Load training data
     test_loader = load_data(is_train=False, batch_size=256)  # Load testing data
@@ -166,11 +176,11 @@ def main():
     
     # Modify final layer to match 10 output classes of CIFAR-10 dataset
     num_ftrs = model.fc.in_features
-    # model.fc = nn.Linear(num_ftrs,10)
-    model.fc = nn.Sequential(
-        nn.Dropout(0.3),
-        nn.Linear(num_ftrs,10)
-    )
+    model.fc = nn.Linear(num_ftrs,10)
+    # model.fc = nn.Sequential(
+    #     nn.Dropout(0.3),
+    #     nn.Linear(num_ftrs,10)
+    # )
 
     # Unfreeze only final layer for training
     for param in model.fc.parameters():
@@ -182,12 +192,12 @@ def main():
     
     # Define Loss and Optimizer
     criterion = nn.CrossEntropyLoss()
-    optimizer = optim.Adam(model.fc.parameters(), lr=0.0001) # only update classifier layer (final fc layer)
-    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='max', factor=0.5, patience=3)
+    optimizer = optim.Adam(model.fc.parameters(), lr=0.0003) # only update classifier layer (final fc layer)
+    # scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='max', factor=0.5, patience=3)
     
     print('3. Training...')
     ## Call your training loop    
-    train_model(model, train_loader, test_loader, criterion, optimizer, scheduler, num_epochs=50, device=device)
+    train_model(model, train_loader, test_loader, criterion, optimizer, num_epochs=30, device=device)
 
 if __name__ == "__main__":
     main()
