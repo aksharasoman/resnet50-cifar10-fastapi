@@ -84,8 +84,8 @@ def train_model(model, train_loader, test_loader, criterion, optimizer, schedule
         val_acc, val_loss = evaluate(model, test_loader, criterion, device)
         print(f"\nTraining Accuracy after Epoch {epoch+1}: {train_acc:.2f}%")
         print(f"\nValidation Accuracy after Epoch {epoch+1}: {val_acc:.2f}%")
-        if scheduler:
-            scheduler.step(val_acc)  # only once per epoch
+        # if scheduler:
+        #     scheduler.step(val_acc)  # only once per epoch
             
         train_losses.append(running_loss / len(train_loader))
         val_losses.append(val_loss)
