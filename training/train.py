@@ -176,23 +176,24 @@ def main():
     
     # Modify final layer to match 10 output classes of CIFAR-10 dataset
     num_ftrs = model.fc.in_features
-    # model.fc = nn.Linear(num_ftrs,10)
-    model.fc = nn.Sequential(
-        nn.Dropout(0.3),
-        nn.Linear(num_ftrs,10)
-    )
+    model.fc = nn.Linear(num_ftrs,10)
+    # model.fc = nn.Sequential(
+    #     nn.Dropout(0.3),
+    #     nn.Linear(num_ftrs,10)
+    # )
 
-    # Unfreeze only final layer for training
-    for param in model.fc.parameters():
+    # Unfreeze layer4 and final layer for training
+    params_train = list(model.layer4.parameters()) + list(model.fc.parameters())
+    for param in params_train:
         param.requires_grad = True
-    
+        
     # Move model to gpu
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = model.to(device)
     
     # Define Loss and Optimizer
     criterion = nn.CrossEntropyLoss()
-    optimizer = optim.Adam(model.fc.parameters(), lr=0.0003) # only update classifier layer (final fc layer)
+    optimizer = optim.Adam(params_train, lr=0.0003) # only update classifier layer (final fc layer)
     # scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='max', factor=0.5, patience=3)
     
     print('3. Training...')
