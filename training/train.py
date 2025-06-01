@@ -171,11 +171,11 @@ def main():
     
     # Modify final layer to match 10 output classes of CIFAR-10 dataset
     num_ftrs = model.fc.in_features
-    model.fc = nn.Linear(num_ftrs,10)
-    # model.fc = nn.Sequential(
-    #     nn.Dropout(0.3),
-    #     nn.Linear(num_ftrs,10)
-    # )
+    # model.fc = nn.Linear(num_ftrs,10)
+    model.fc = nn.Sequential(
+        nn.Dropout(0.3),
+        nn.Linear(num_ftrs,10)
+    )
 
     # Unfreeze layer4 and final layer for training
     params_train = list(model.layer4.parameters()) + list(model.fc.parameters())
