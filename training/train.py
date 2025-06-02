@@ -188,7 +188,7 @@ def main():
     
     # Define Loss and Optimizer
     criterion = nn.CrossEntropyLoss()
-    optimizer = optim.Adam(params_train, lr=0.0003, weight_decay = 1e-4) # only update classifier layer (final fc layer)
+    optimizer = optim.Adam(params_train, lr=0.0003) # only update classifier layer (final fc layer)
     scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=3)
     
     print('3. Training...')
