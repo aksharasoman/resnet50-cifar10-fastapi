@@ -56,7 +56,7 @@ def load_data(is_train = True, batch_size: int = 64) -> DataLoader:
     return data_loader
 
 # Training Loop
-def train_model(model, train_loader, test_loader, criterion, optimizer, num_epochs=10, device = "cpu"):
+def train_model(model, train_loader, test_loader, criterion, optimizer, scheduler, num_epochs=10, device = "cpu"):
     best_acc = 0.0
     train_losses, val_losses = [], []
     train_accuracies, val_accuracies = [], []   
@@ -88,8 +88,8 @@ def train_model(model, train_loader, test_loader, criterion, optimizer, num_epoc
         val_acc, val_loss = evaluate(model, test_loader, criterion, device)
         print(f"\nTraining Accuracy after Epoch {epoch+1}: {train_acc:.2f}%")
         print(f"\nValidation Accuracy after Epoch {epoch+1}: {val_acc:.2f}%")
-        # if scheduler:
-        #     scheduler.step(val_acc)  # only once per epoch
+        if scheduler:
+            scheduler.step(val_loss)  # only once per epoch
             
         train_losses.append(running_loss / len(train_loader))
         val_losses.append(val_loss)
@@ -188,12 +188,12 @@ def main():
     
     # Define Loss and Optimizer
     criterion = nn.CrossEntropyLoss()
-    optimizer = optim.Adam(params_train, lr=0.0003) # only update classifier layer (final fc layer)
-    # scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='max', factor=0.5, patience=3)
+    optimizer = optim.Adam(params_train, lr=0.0003, weight_decay = 1e-4) # only update classifier layer (final fc layer)
+    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=3)
     
     print('3. Training...')
     ## Call your training loop    
-    train_model(model, train_loader, test_loader, criterion, optimizer, num_epochs=30, device=device)
+    train_model(model, train_loader, test_loader, criterion, optimizer, scheduler, num_epochs=30, device=device)
 
 if __name__ == "__main__":
     main()
