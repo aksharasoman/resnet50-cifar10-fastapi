@@ -173,7 +173,7 @@ def main():
     num_ftrs = model.fc.in_features
     # model.fc = nn.Linear(num_ftrs,10)
     model.fc = nn.Sequential(
-        nn.Dropout(0.3),
+        nn.Dropout(0.4),
         nn.Linear(num_ftrs,10)
     )
 
