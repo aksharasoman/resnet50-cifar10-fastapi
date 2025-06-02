@@ -173,12 +173,12 @@ def main():
     num_ftrs = model.fc.in_features
     # model.fc = nn.Linear(num_ftrs,10)
     model.fc = nn.Sequential(
-        nn.Dropout(0.4),
+        nn.Dropout(0.3),
         nn.Linear(num_ftrs,10)
     )
 
-    # Unfreeze layer4 and final layer for training
-    params_train = list(model.layer4.parameters()) + list(model.fc.parameters())
+    # Unfreeze layer3, layer4 and final layer for training
+    params_train = list(model.layer3.parameters()) + list(model.layer4.parameters()) + list(model.fc.parameters())
     for param in params_train:
         param.requires_grad = True
         
@@ -188,7 +188,7 @@ def main():
     
     # Define Loss and Optimizer
     criterion = nn.CrossEntropyLoss()
-    optimizer = optim.Adam(params_train, lr=0.0003, weight_decay=1e-4) # only update classifier layer (final fc layer)
+    optimizer = optim.Adam(params_train, lr=0.0003) # only update classifier layer (final fc layer)
     # scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='max', factor=0.5, patience=3)
     
     print('3. Training...')
