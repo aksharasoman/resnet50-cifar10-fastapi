@@ -187,7 +187,7 @@ def main():
     model = model.to(device)
     
     # Define Loss and Optimizer
-    criterion = nn.CrossEntropyLoss()
+    criterion = nn.CrossEntropyLoss(label_smoothing=0.1)
     optimizer = optim.Adam(params_train, lr=0.0003) # only update classifier layer (final fc layer)
     scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=3)
     
@@ -197,3 +197,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+ 
