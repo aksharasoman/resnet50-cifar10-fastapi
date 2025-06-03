@@ -79,6 +79,7 @@ def train_model(model, train_loader, test_loader, criterion, optimizer, schedule
             
             # Track number of correctly predicted samples for accuracy.
             _, predicted = torch.max(outputs.data, 1) # outputs contains raw scores (logits) for each class.
+               # index of the maximum logit: corresponds to the most confident class prediction.
             correct += (predicted == labels).sum().item()
             total += labels.size(0)
             running_loss += loss.item()
