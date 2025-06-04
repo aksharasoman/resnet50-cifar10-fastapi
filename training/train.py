@@ -10,6 +10,8 @@ from tqdm import tqdm
 import matplotlib.pyplot as plt
 import random
 import numpy as np
+import torch.nn.functional as F
+from torchmetrics.classification import MulticlassCalibrationError
 
 def set_seed(seed=42):
     random.seed(seed)
@@ -86,9 +88,9 @@ def train_model(model, train_loader, test_loader, criterion, optimizer, schedule
         
         train_acc = 100 * correct / total
         # Validation
-        val_acc, val_loss = evaluate(model, test_loader, criterion, device)
-        print(f"\nTraining Accuracy after Epoch {epoch+1}: {train_acc:.2f}%")
-        print(f"\nValidation Accuracy after Epoch {epoch+1}: {val_acc:.2f}%")
+        val_acc, val_loss, ece_metric  = evaluate(model, test_loader, criterion, device)
+        print(f"\nAfter Epoch {epoch+1}:: Training Accuracy: {train_acc:.2f}% | Validation Accuracy: {val_acc:.2f}% | ECE: {ece_score:.4f}")
+
         if scheduler:
             scheduler.step(val_loss)  # only once per epoch
             
@@ -140,17 +142,32 @@ def evaluate(model, dataloader, criterion, device='cpu'):
     total = 0
     total_loss = 0
 
+    ece_metric = MulticlassCalibrationError(num_classes=10, n_bins=15, norm='l1') # Initialize ECE metric (once, before validation loop)
+    all_probs = []
+    all_targets = []
+
     with torch.no_grad():
         for images, labels in dataloader:
             images, labels = images.to(device), labels.to(device)
             outputs = model(images)
+            probs = F.softmax(outputs, dim=1)
+
             _, predicted = torch.max(outputs.data, 1)
             total += labels.size(0)
             correct += (predicted == labels).sum().item()
             loss = criterion(outputs,labels)
             total_loss += loss.item()
+
+            all_probs.append(probs.cpu())
+            all_targets.append(labels.cpu())
     avg_loss = total_loss/len(dataloader)
-    return 100 * correct / total, avg_loss
+    
+    all_probs = torch.cat(all_probs, dim=0)
+    all_targets = torch.cat(all_targets, dim=0)
+    # Compute ECE
+    ece_score = ece_metric(all_probs, all_targets).item()
+
+    return 100 * correct / total, avg_loss, ece_score
 
 def main():
     """
