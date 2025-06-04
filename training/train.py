@@ -88,7 +88,7 @@ def train_model(model, train_loader, test_loader, criterion, optimizer, schedule
         
         train_acc = 100 * correct / total
         # Validation
-        val_acc, val_loss, ece_metric  = evaluate(model, test_loader, criterion, device)
+        val_acc, val_loss, ece_score  = evaluate(model, test_loader, criterion, device)
         print(f"\nAfter Epoch {epoch+1}:: Training Accuracy: {train_acc:.2f}% | Validation Accuracy: {val_acc:.2f}% | ECE: {ece_score:.4f}")
 
         if scheduler:
@@ -160,14 +160,18 @@ def evaluate(model, dataloader, criterion, device='cpu'):
 
             all_probs.append(probs.cpu())
             all_targets.append(labels.cpu())
+    val_acc = 100 * correct / total
     avg_loss = total_loss/len(dataloader)
     
     all_probs = torch.cat(all_probs, dim=0)
     all_targets = torch.cat(all_targets, dim=0)
+    # Save all_probs and all_targets for further analysis (final epoch outputs will be obtained)
+    torch.save({'probs': all_probs, 'targets': all_targets}, 'eval_probs_targets.pth') 
+    
     # Compute ECE
     ece_score = ece_metric(all_probs, all_targets).item()
 
-    return 100 * correct / total, avg_loss, ece_score
+    return val_acc, avg_loss, ece_score
 
 def main():
     """
@@ -189,7 +193,6 @@ def main():
     
     # Modify final layer to match 10 output classes of CIFAR-10 dataset
     num_ftrs = model.fc.in_features
-    # model.fc = nn.Linear(num_ftrs,10)
     model.fc = nn.Sequential(
         nn.Dropout(0.5),
         nn.Linear(num_ftrs,10)
