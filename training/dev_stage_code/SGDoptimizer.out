@@ -1,0 +1,395 @@
+/home/ojus001/.venvs/venv/lib/python3.12/site-packages/torch/utils/data/dataloader.py:624: UserWarning: This DataLoader will create 2 worker processes in total. Our suggested max number of worker in current system is 1, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(
+1. Data Loading...
+2.Model Loading...
+3. Training...
+  0%|          | 0/200 [00:00<?, ?it/s]/home/ojus001/.venvs/venv/lib/python3.12/site-packages/torch/optim/lr_scheduler.py:243: UserWarning: The epoch parameter in `scheduler.step()` was not necessary and is being deprecated where possible. Please use `scheduler.step()` to step the scheduler. During the deprecation, if epoch is different from None, the closed form is used instead of the new chainable form, where available. Please open an issue if you are unable to replicate your use case: https://github.com/pytorch/pytorch/issues/new/choose.
+  warnings.warn(EPOCH_DEPRECATION_WARNING, UserWarning)
+  0%|          | 1/200 [01:08<3:48:01, 68.75s/it]
+After Epoch 1:: Training Accuracy: 12.27% | Validation Accuracy: 13.60% | ECE: 0.0302
+Best model saved.
+  1%|          | 2/200 [02:02<3:17:28, 59.84s/it]
+After Epoch 2:: Training Accuracy: 18.39% | Validation Accuracy: 31.33% | ECE: 0.0706
+Best model saved.
+  2%|▏         | 3/200 [02:56<3:07:26, 57.09s/it]
+After Epoch 3:: Training Accuracy: 34.05% | Validation Accuracy: 57.31% | ECE: 0.0719
+Best model saved.
+  2%|▏         | 4/200 [03:50<3:02:42, 55.93s/it]
+After Epoch 4:: Training Accuracy: 59.96% | Validation Accuracy: 71.95% | ECE: 0.0428
+Best model saved.
+  2%|▎         | 5/200 [04:48<3:04:19, 56.71s/it]
+After Epoch 5:: Training Accuracy: 70.51% | Validation Accuracy: 76.67% | ECE: 0.0354
+Best model saved.
+  3%|▎         | 6/200 [05:50<3:09:12, 58.52s/it]
+After Epoch 6:: Training Accuracy: 73.49% | Validation Accuracy: 76.96% | ECE: 0.0227
+Best model saved.
+  4%|▎         | 7/200 [06:46<3:05:15, 57.60s/it]
+After Epoch 7:: Training Accuracy: 74.81% | Validation Accuracy: 77.13% | ECE: 0.0431
+Best model saved.
+  4%|▍         | 8/200 [07:39<3:00:19, 56.35s/it]
+After Epoch 8:: Training Accuracy: 75.79% | Validation Accuracy: 78.67% | ECE: 0.0262
+Best model saved.
+  4%|▍         | 9/200 [08:33<2:56:57, 55.59s/it]
+After Epoch 9:: Training Accuracy: 76.43% | Validation Accuracy: 80.30% | ECE: 0.0334
+Best model saved.
+  5%|▌         | 10/200 [09:27<2:54:08, 54.99s/it]
+After Epoch 10:: Training Accuracy: 76.65% | Validation Accuracy: 79.00% | ECE: 0.0354
+  6%|▌         | 11/200 [10:33<3:03:51, 58.37s/it]
+After Epoch 11:: Training Accuracy: 77.27% | Validation Accuracy: 79.70% | ECE: 0.0404
+  6%|▌         | 12/200 [11:29<3:00:55, 57.74s/it]
+After Epoch 12:: Training Accuracy: 77.24% | Validation Accuracy: 80.99% | ECE: 0.0345
+Best model saved.
+  6%|▋         | 13/200 [12:23<2:56:01, 56.48s/it]
+After Epoch 13:: Training Accuracy: 77.54% | Validation Accuracy: 78.10% | ECE: 0.0526
+  7%|▋         | 14/200 [13:16<2:52:25, 55.62s/it]
+After Epoch 14:: Training Accuracy: 77.63% | Validation Accuracy: 80.08% | ECE: 0.0499
+  8%|▊         | 15/200 [14:10<2:49:39, 55.03s/it]
+After Epoch 15:: Training Accuracy: 77.75% | Validation Accuracy: 80.73% | ECE: 0.0293
+  8%|▊         | 16/200 [15:14<2:56:32, 57.57s/it]
+After Epoch 16:: Training Accuracy: 77.89% | Validation Accuracy: 80.80% | ECE: 0.0373
+  8%|▊         | 17/200 [16:07<2:52:12, 56.46s/it]
+After Epoch 17:: Training Accuracy: 78.21% | Validation Accuracy: 79.97% | ECE: 0.0266
+  9%|▉         | 18/200 [17:07<2:53:49, 57.31s/it]
+After Epoch 18:: Training Accuracy: 77.98% | Validation Accuracy: 81.25% | ECE: 0.0305
+Best model saved.
+ 10%|▉         | 19/200 [18:00<2:49:22, 56.15s/it]
+After Epoch 19:: Training Accuracy: 78.17% | Validation Accuracy: 78.36% | ECE: 0.0338
+ 10%|█         | 20/200 [18:54<2:46:11, 55.40s/it]
+After Epoch 20:: Training Accuracy: 78.04% | Validation Accuracy: 80.58% | ECE: 0.0215
+ 10%|█         | 21/200 [19:48<2:43:44, 54.88s/it]
+After Epoch 21:: Training Accuracy: 78.19% | Validation Accuracy: 80.84% | ECE: 0.0412
+ 11%|█         | 22/200 [20:49<2:49:01, 56.97s/it]
+After Epoch 22:: Training Accuracy: 78.17% | Validation Accuracy: 82.19% | ECE: 0.0185
+Best model saved.
+ 12%|█▏        | 23/200 [21:43<2:45:04, 55.96s/it]
+After Epoch 23:: Training Accuracy: 78.44% | Validation Accuracy: 80.02% | ECE: 0.0434
+ 12%|█▏        | 24/200 [22:42<2:47:16, 57.03s/it]
+After Epoch 24:: Training Accuracy: 78.47% | Validation Accuracy: 79.91% | ECE: 0.0425
+ 12%|█▎        | 25/200 [23:36<2:43:16, 55.98s/it]
+After Epoch 25:: Training Accuracy: 78.43% | Validation Accuracy: 79.54% | ECE: 0.0170
+ 13%|█▎        | 26/200 [24:30<2:40:24, 55.32s/it]
+After Epoch 26:: Training Accuracy: 78.29% | Validation Accuracy: 79.79% | ECE: 0.0275
+ 14%|█▎        | 27/200 [25:33<2:45:56, 57.55s/it]
+After Epoch 27:: Training Accuracy: 78.50% | Validation Accuracy: 80.02% | ECE: 0.0352
+ 14%|█▍        | 28/200 [26:27<2:42:07, 56.55s/it]
+After Epoch 28:: Training Accuracy: 78.73% | Validation Accuracy: 80.10% | ECE: 0.0342
+ 14%|█▍        | 29/200 [27:21<2:39:00, 55.79s/it]
+After Epoch 29:: Training Accuracy: 78.27% | Validation Accuracy: 77.74% | ECE: 0.0429
+ 15%|█▌        | 30/200 [28:21<2:41:32, 57.02s/it]
+After Epoch 30:: Training Accuracy: 78.51% | Validation Accuracy: 82.10% | ECE: 0.0278
+ 16%|█▌        | 31/200 [29:14<2:37:38, 55.97s/it]
+After Epoch 31:: Training Accuracy: 78.28% | Validation Accuracy: 80.25% | ECE: 0.0398
+ 16%|█▌        | 32/200 [30:16<2:41:33, 57.70s/it]
+After Epoch 32:: Training Accuracy: 78.61% | Validation Accuracy: 81.78% | ECE: 0.0342
+ 16%|█▋        | 33/200 [31:10<2:37:22, 56.54s/it]
+After Epoch 33:: Training Accuracy: 78.81% | Validation Accuracy: 80.67% | ECE: 0.0363
+ 17%|█▋        | 34/200 [32:03<2:34:05, 55.69s/it]
+After Epoch 34:: Training Accuracy: 78.55% | Validation Accuracy: 78.06% | ECE: 0.0714
+ 18%|█▊        | 35/200 [33:01<2:34:17, 56.10s/it]
+After Epoch 35:: Training Accuracy: 78.53% | Validation Accuracy: 81.27% | ECE: 0.0210
+ 18%|█▊        | 36/200 [33:58<2:34:09, 56.40s/it]
+After Epoch 36:: Training Accuracy: 78.78% | Validation Accuracy: 80.13% | ECE: 0.0278
+ 18%|█▊        | 37/200 [34:51<2:30:57, 55.57s/it]
+After Epoch 37:: Training Accuracy: 78.42% | Validation Accuracy: 81.47% | ECE: 0.0299
+ 19%|█▉        | 38/200 [35:56<2:37:38, 58.39s/it]
+After Epoch 38:: Training Accuracy: 78.64% | Validation Accuracy: 79.02% | ECE: 0.0473
+ 20%|█▉        | 39/200 [36:50<2:33:14, 57.11s/it]
+After Epoch 39:: Training Accuracy: 78.55% | Validation Accuracy: 80.34% | ECE: 0.0369
+ 20%|██        | 40/200 [37:44<2:29:46, 56.17s/it]
+After Epoch 40:: Training Accuracy: 78.58% | Validation Accuracy: 80.29% | ECE: 0.0285
+ 20%|██        | 41/200 [38:41<2:28:53, 56.19s/it]
+After Epoch 41:: Training Accuracy: 78.71% | Validation Accuracy: 81.19% | ECE: 0.0266
+ 21%|██        | 42/200 [39:37<2:28:18, 56.32s/it]
+After Epoch 42:: Training Accuracy: 78.55% | Validation Accuracy: 79.81% | ECE: 0.0261
+ 22%|██▏       | 43/200 [40:41<2:33:18, 58.59s/it]
+After Epoch 43:: Training Accuracy: 78.58% | Validation Accuracy: 78.61% | ECE: 0.0404
+ 22%|██▏       | 44/200 [41:35<2:28:34, 57.14s/it]
+After Epoch 44:: Training Accuracy: 78.62% | Validation Accuracy: 77.71% | ECE: 0.0501
+ 22%|██▎       | 45/200 [42:28<2:24:49, 56.06s/it]
+After Epoch 45:: Training Accuracy: 78.56% | Validation Accuracy: 81.37% | ECE: 0.0218
+ 23%|██▎       | 46/200 [43:24<2:23:14, 55.81s/it]
+After Epoch 46:: Training Accuracy: 78.58% | Validation Accuracy: 81.54% | ECE: 0.0181
+ 24%|██▎       | 47/200 [44:17<2:20:41, 55.17s/it]
+After Epoch 47:: Training Accuracy: 78.67% | Validation Accuracy: 80.15% | ECE: 0.0455
+ 24%|██▍       | 48/200 [45:24<2:28:24, 58.59s/it]
+After Epoch 48:: Training Accuracy: 78.69% | Validation Accuracy: 80.67% | ECE: 0.0334
+ 24%|██▍       | 49/200 [46:20<2:25:57, 58.00s/it]
+After Epoch 49:: Training Accuracy: 78.48% | Validation Accuracy: 80.99% | ECE: 0.0427
+ 25%|██▌       | 50/200 [47:14<2:21:43, 56.69s/it]
+After Epoch 50:: Training Accuracy: 78.74% | Validation Accuracy: 80.48% | ECE: 0.0314
+ 26%|██▌       | 51/200 [48:09<2:19:25, 56.15s/it]
+After Epoch 51:: Training Accuracy: 78.72% | Validation Accuracy: 80.02% | ECE: 0.0230
+ 26%|██▌       | 52/200 [49:03<2:16:52, 55.49s/it]
+After Epoch 52:: Training Accuracy: 78.78% | Validation Accuracy: 79.85% | ECE: 0.0553
+ 26%|██▋       | 53/200 [49:57<2:14:56, 55.08s/it]
+After Epoch 53:: Training Accuracy: 78.85% | Validation Accuracy: 79.45% | ECE: 0.0465
+ 27%|██▋       | 54/200 [51:02<2:21:29, 58.15s/it]
+After Epoch 54:: Training Accuracy: 79.03% | Validation Accuracy: 81.32% | ECE: 0.0172
+ 28%|██▊       | 55/200 [51:56<2:17:03, 56.72s/it]
+After Epoch 55:: Training Accuracy: 78.90% | Validation Accuracy: 81.09% | ECE: 0.0223
+ 28%|██▊       | 56/200 [52:49<2:13:51, 55.78s/it]
+After Epoch 56:: Training Accuracy: 78.82% | Validation Accuracy: 81.10% | ECE: 0.0399
+ 28%|██▊       | 57/200 [53:45<2:12:32, 55.62s/it]
+After Epoch 57:: Training Accuracy: 78.67% | Validation Accuracy: 81.28% | ECE: 0.0371
+ 29%|██▉       | 58/200 [54:38<2:10:08, 54.99s/it]
+After Epoch 58:: Training Accuracy: 79.06% | Validation Accuracy: 79.69% | ECE: 0.0221
+ 30%|██▉       | 59/200 [55:39<2:13:15, 56.71s/it]
+After Epoch 59:: Training Accuracy: 78.72% | Validation Accuracy: 79.48% | ECE: 0.0591
+ 30%|███       | 60/200 [56:36<2:12:59, 57.00s/it]
+After Epoch 60:: Training Accuracy: 78.62% | Validation Accuracy: 81.00% | ECE: 0.0286
+ 30%|███       | 61/200 [57:30<2:09:38, 55.96s/it]
+After Epoch 61:: Training Accuracy: 78.82% | Validation Accuracy: 79.99% | ECE: 0.0323
+ 31%|███       | 62/200 [58:26<2:08:50, 56.02s/it]
+After Epoch 62:: Training Accuracy: 78.42% | Validation Accuracy: 80.46% | ECE: 0.0288
+ 32%|███▏      | 63/200 [59:20<2:06:13, 55.28s/it]
+After Epoch 63:: Training Accuracy: 78.48% | Validation Accuracy: 81.63% | ECE: 0.0269
+ 32%|███▏      | 64/200 [1:00:13<2:04:10, 54.78s/it]
+After Epoch 64:: Training Accuracy: 78.48% | Validation Accuracy: 81.23% | ECE: 0.0318
+ 32%|███▎      | 65/200 [1:01:18<2:10:02, 57.79s/it]
+After Epoch 65:: Training Accuracy: 78.75% | Validation Accuracy: 82.35% | ECE: 0.0269
+Best model saved.
+ 33%|███▎      | 66/200 [1:02:13<2:06:47, 56.77s/it]
+After Epoch 66:: Training Accuracy: 78.63% | Validation Accuracy: 79.78% | ECE: 0.0391
+ 34%|███▎      | 67/200 [1:03:06<2:03:42, 55.81s/it]
+After Epoch 67:: Training Accuracy: 78.50% | Validation Accuracy: 80.66% | ECE: 0.0276
+ 34%|███▍      | 68/200 [1:04:01<2:02:24, 55.64s/it]
+After Epoch 68:: Training Accuracy: 79.03% | Validation Accuracy: 78.78% | ECE: 0.0693
+ 34%|███▍      | 69/200 [1:04:55<2:00:09, 55.03s/it]
+After Epoch 69:: Training Accuracy: 78.38% | Validation Accuracy: 80.49% | ECE: 0.0349
+ 35%|███▌      | 70/200 [1:05:59<2:05:07, 57.75s/it]
+After Epoch 70:: Training Accuracy: 78.75% | Validation Accuracy: 81.66% | ECE: 0.0226
+ 36%|███▌      | 71/200 [1:06:57<2:04:13, 57.78s/it]
+After Epoch 71:: Training Accuracy: 78.86% | Validation Accuracy: 79.57% | ECE: 0.0584
+ 36%|███▌      | 72/200 [1:07:51<2:01:00, 56.72s/it]
+After Epoch 72:: Training Accuracy: 78.57% | Validation Accuracy: 77.65% | ECE: 0.0603
+ 36%|███▋      | 73/200 [1:08:47<1:59:14, 56.34s/it]
+After Epoch 73:: Training Accuracy: 78.59% | Validation Accuracy: 81.21% | ECE: 0.0229
+ 37%|███▋      | 74/200 [1:09:40<1:56:38, 55.54s/it]
+After Epoch 74:: Training Accuracy: 78.84% | Validation Accuracy: 80.95% | ECE: 0.0385
+ 38%|███▊      | 75/200 [1:10:34<1:54:33, 54.99s/it]
+After Epoch 75:: Training Accuracy: 78.70% | Validation Accuracy: 79.10% | ECE: 0.0605
+ 38%|███▊      | 76/200 [1:11:35<1:57:30, 56.86s/it]
+After Epoch 76:: Training Accuracy: 78.49% | Validation Accuracy: 82.29% | ECE: 0.0209
+ 38%|███▊      | 77/200 [1:12:33<1:56:49, 56.99s/it]
+After Epoch 77:: Training Accuracy: 78.80% | Validation Accuracy: 78.63% | ECE: 0.0547
+ 39%|███▉      | 78/200 [1:13:27<1:54:04, 56.10s/it]
+After Epoch 78:: Training Accuracy: 78.45% | Validation Accuracy: 78.99% | ECE: 0.0375
+ 40%|███▉      | 79/200 [1:14:22<1:52:53, 55.98s/it]
+After Epoch 79:: Training Accuracy: 78.89% | Validation Accuracy: 80.40% | ECE: 0.0274
+ 40%|████      | 80/200 [1:15:16<1:50:35, 55.30s/it]
+After Epoch 80:: Training Accuracy: 78.63% | Validation Accuracy: 80.45% | ECE: 0.0248
+ 40%|████      | 81/200 [1:16:10<1:48:42, 54.81s/it]
+After Epoch 81:: Training Accuracy: 78.92% | Validation Accuracy: 80.91% | ECE: 0.0435
+ 41%|████      | 82/200 [1:17:12<1:52:29, 57.20s/it]
+After Epoch 82:: Training Accuracy: 78.66% | Validation Accuracy: 79.85% | ECE: 0.0483
+ 42%|████▏     | 83/200 [1:18:09<1:50:54, 56.88s/it]
+After Epoch 83:: Training Accuracy: 78.50% | Validation Accuracy: 80.41% | ECE: 0.0203
+ 42%|████▏     | 84/200 [1:19:04<1:49:19, 56.55s/it]
+After Epoch 84:: Training Accuracy: 78.28% | Validation Accuracy: 77.54% | ECE: 0.0557
+ 42%|████▎     | 85/200 [1:19:58<1:46:43, 55.68s/it]
+After Epoch 85:: Training Accuracy: 78.52% | Validation Accuracy: 81.48% | ECE: 0.0200
+ 43%|████▎     | 86/200 [1:20:52<1:44:39, 55.08s/it]
+After Epoch 86:: Training Accuracy: 78.40% | Validation Accuracy: 82.22% | ECE: 0.0298
+ 44%|████▎     | 87/200 [1:21:52<1:46:37, 56.61s/it]
+After Epoch 87:: Training Accuracy: 78.70% | Validation Accuracy: 80.93% | ECE: 0.0389
+ 44%|████▍     | 88/200 [1:22:48<1:45:27, 56.49s/it]
+After Epoch 88:: Training Accuracy: 78.82% | Validation Accuracy: 80.16% | ECE: 0.0241
+ 44%|████▍     | 89/200 [1:23:46<1:45:03, 56.79s/it]
+After Epoch 89:: Training Accuracy: 78.75% | Validation Accuracy: 80.34% | ECE: 0.0321
+ 45%|████▌     | 90/200 [1:24:40<1:42:47, 56.07s/it]
+After Epoch 90:: Training Accuracy: 78.58% | Validation Accuracy: 80.20% | ECE: 0.0436
+ 46%|████▌     | 91/200 [1:25:34<1:40:34, 55.36s/it]
+After Epoch 91:: Training Accuracy: 78.58% | Validation Accuracy: 79.48% | ECE: 0.0306
+ 46%|████▌     | 92/200 [1:26:27<1:38:45, 54.87s/it]
+After Epoch 92:: Training Accuracy: 78.49% | Validation Accuracy: 80.65% | ECE: 0.0448
+ 46%|████▋     | 93/200 [1:27:29<1:41:15, 56.78s/it]
+After Epoch 93:: Training Accuracy: 78.62% | Validation Accuracy: 81.47% | ECE: 0.0184
+ 47%|████▋     | 94/200 [1:28:22<1:38:38, 55.84s/it]
+After Epoch 94:: Training Accuracy: 78.48% | Validation Accuracy: 80.64% | ECE: 0.0286
+ 48%|████▊     | 95/200 [1:29:22<1:39:58, 57.13s/it]
+After Epoch 95:: Training Accuracy: 78.57% | Validation Accuracy: 80.37% | ECE: 0.0287
+ 48%|████▊     | 96/200 [1:30:17<1:37:36, 56.31s/it]
+After Epoch 96:: Training Accuracy: 79.02% | Validation Accuracy: 79.38% | ECE: 0.0265
+ 48%|████▊     | 97/200 [1:31:11<1:35:29, 55.63s/it]
+After Epoch 97:: Training Accuracy: 78.58% | Validation Accuracy: 80.20% | ECE: 0.0269
+ 49%|████▉     | 98/200 [1:32:18<1:40:15, 58.98s/it]
+After Epoch 98:: Training Accuracy: 78.57% | Validation Accuracy: 80.48% | ECE: 0.0196
+ 50%|████▉     | 99/200 [1:33:12<1:36:47, 57.50s/it]
+After Epoch 99:: Training Accuracy: 78.73% | Validation Accuracy: 80.33% | ECE: 0.0339
+ 50%|█████     | 100/200 [1:34:06<1:34:27, 56.67s/it]
+After Epoch 100:: Training Accuracy: 78.58% | Validation Accuracy: 80.45% | ECE: 0.0302
+ 50%|█████     | 101/200 [1:35:03<1:33:26, 56.63s/it]
+After Epoch 101:: Training Accuracy: 78.81% | Validation Accuracy: 80.08% | ECE: 0.0258
+ 51%|█████     | 102/200 [1:35:57<1:31:27, 56.00s/it]
+After Epoch 102:: Training Accuracy: 78.55% | Validation Accuracy: 80.75% | ECE: 0.0332
+ 52%|█████▏    | 103/200 [1:36:51<1:29:22, 55.28s/it]
+After Epoch 103:: Training Accuracy: 78.39% | Validation Accuracy: 81.01% | ECE: 0.0184
+ 52%|█████▏    | 104/200 [1:37:54<1:32:02, 57.53s/it]
+After Epoch 104:: Training Accuracy: 78.85% | Validation Accuracy: 81.83% | ECE: 0.0310
+ 52%|█████▎    | 105/200 [1:38:49<1:29:51, 56.75s/it]
+After Epoch 105:: Training Accuracy: 78.63% | Validation Accuracy: 80.51% | ECE: 0.0341
+ 53%|█████▎    | 106/200 [1:39:43<1:27:31, 55.87s/it]
+After Epoch 106:: Training Accuracy: 78.62% | Validation Accuracy: 79.11% | ECE: 0.0322
+ 54%|█████▎    | 107/200 [1:40:38<1:26:35, 55.86s/it]
+After Epoch 107:: Training Accuracy: 78.87% | Validation Accuracy: 81.47% | ECE: 0.0174
+ 54%|█████▍    | 108/200 [1:41:33<1:25:09, 55.54s/it]
+After Epoch 108:: Training Accuracy: 78.57% | Validation Accuracy: 81.14% | ECE: 0.0274
+ 55%|█████▍    | 109/200 [1:42:36<1:27:41, 57.82s/it]
+After Epoch 109:: Training Accuracy: 79.08% | Validation Accuracy: 79.47% | ECE: 0.0537
+ 55%|█████▌    | 110/200 [1:43:30<1:24:56, 56.63s/it]
+After Epoch 110:: Training Accuracy: 78.57% | Validation Accuracy: 81.03% | ECE: 0.0168
+ 56%|█████▌    | 111/200 [1:44:26<1:23:34, 56.35s/it]
+After Epoch 111:: Training Accuracy: 78.85% | Validation Accuracy: 78.99% | ECE: 0.0552
+ 56%|█████▌    | 112/200 [1:45:20<1:21:30, 55.57s/it]
+After Epoch 112:: Training Accuracy: 78.70% | Validation Accuracy: 78.31% | ECE: 0.0399
+ 56%|█████▋    | 113/200 [1:46:17<1:21:20, 56.10s/it]
+After Epoch 113:: Training Accuracy: 78.54% | Validation Accuracy: 80.36% | ECE: 0.0364
+ 57%|█████▋    | 114/200 [1:47:10<1:19:16, 55.31s/it]
+After Epoch 114:: Training Accuracy: 78.44% | Validation Accuracy: 81.49% | ECE: 0.0378
+ 57%|█████▊    | 115/200 [1:48:11<1:20:43, 56.99s/it]
+After Epoch 115:: Training Accuracy: 78.56% | Validation Accuracy: 80.42% | ECE: 0.0293
+ 58%|█████▊    | 116/200 [1:49:05<1:18:23, 55.99s/it]
+After Epoch 116:: Training Accuracy: 78.61% | Validation Accuracy: 81.80% | ECE: 0.0241
+ 58%|█████▊    | 117/200 [1:50:01<1:17:15, 55.85s/it]
+After Epoch 117:: Training Accuracy: 78.56% | Validation Accuracy: 81.30% | ECE: 0.0199
+ 59%|█████▉    | 118/200 [1:50:54<1:15:26, 55.20s/it]
+After Epoch 118:: Training Accuracy: 78.54% | Validation Accuracy: 80.39% | ECE: 0.0449
+ 60%|█████▉    | 119/200 [1:51:52<1:15:45, 56.12s/it]
+After Epoch 119:: Training Accuracy: 78.76% | Validation Accuracy: 77.97% | ECE: 0.0434
+ 60%|██████    | 120/200 [1:52:54<1:16:52, 57.66s/it]
+After Epoch 120:: Training Accuracy: 78.74% | Validation Accuracy: 80.58% | ECE: 0.0340
+ 60%|██████    | 121/200 [1:53:48<1:14:30, 56.59s/it]
+After Epoch 121:: Training Accuracy: 78.55% | Validation Accuracy: 80.74% | ECE: 0.0295
+ 61%|██████    | 122/200 [1:54:42<1:12:31, 55.78s/it]
+After Epoch 122:: Training Accuracy: 78.62% | Validation Accuracy: 75.90% | ECE: 0.0522
+ 62%|██████▏   | 123/200 [1:55:37<1:11:30, 55.72s/it]
+After Epoch 123:: Training Accuracy: 78.52% | Validation Accuracy: 79.23% | ECE: 0.0558
+ 62%|██████▏   | 124/200 [1:56:31<1:09:46, 55.09s/it]
+After Epoch 124:: Training Accuracy: 78.79% | Validation Accuracy: 80.56% | ECE: 0.0399
+ 62%|██████▎   | 125/200 [1:57:29<1:09:49, 55.86s/it]
+After Epoch 125:: Training Accuracy: 78.55% | Validation Accuracy: 80.01% | ECE: 0.0339
+ 63%|██████▎   | 126/200 [1:58:34<1:12:17, 58.61s/it]
+After Epoch 126:: Training Accuracy: 78.51% | Validation Accuracy: 80.55% | ECE: 0.0230
+ 64%|██████▎   | 127/200 [1:59:27<1:09:27, 57.10s/it]
+After Epoch 127:: Training Accuracy: 78.83% | Validation Accuracy: 79.27% | ECE: 0.0397
+ 64%|██████▍   | 128/200 [2:00:22<1:07:49, 56.52s/it]
+After Epoch 128:: Training Accuracy: 78.07% | Validation Accuracy: 80.31% | ECE: 0.0304
+ 64%|██████▍   | 129/200 [2:01:16<1:05:50, 55.65s/it]
+After Epoch 129:: Training Accuracy: 78.66% | Validation Accuracy: 79.01% | ECE: 0.0508
+ 65%|██████▌   | 130/200 [2:02:10<1:04:13, 55.05s/it]
+After Epoch 130:: Training Accuracy: 78.57% | Validation Accuracy: 81.63% | ECE: 0.0127
+ 66%|██████▌   | 131/200 [2:03:08<1:04:27, 56.06s/it]
+After Epoch 131:: Training Accuracy: 78.38% | Validation Accuracy: 80.60% | ECE: 0.0282
+ 66%|██████▌   | 132/200 [2:04:14<1:06:58, 59.09s/it]
+After Epoch 132:: Training Accuracy: 78.20% | Validation Accuracy: 81.12% | ECE: 0.0336
+ 66%|██████▋   | 133/200 [2:05:08<1:04:12, 57.50s/it]
+After Epoch 133:: Training Accuracy: 78.46% | Validation Accuracy: 81.67% | ECE: 0.0354
+ 67%|██████▋   | 134/200 [2:06:04<1:02:41, 57.00s/it]
+After Epoch 134:: Training Accuracy: 78.31% | Validation Accuracy: 80.58% | ECE: 0.0218
+ 68%|██████▊   | 135/200 [2:06:58<1:00:40, 56.02s/it]
+After Epoch 135:: Training Accuracy: 78.50% | Validation Accuracy: 80.50% | ECE: 0.0323
+ 68%|██████▊   | 136/200 [2:07:51<58:59, 55.31s/it]  
+After Epoch 136:: Training Accuracy: 78.68% | Validation Accuracy: 80.08% | ECE: 0.0467
+ 68%|██████▊   | 137/200 [2:08:58<1:01:34, 58.65s/it]
+After Epoch 137:: Training Accuracy: 78.58% | Validation Accuracy: 82.90% | ECE: 0.0197
+Best model saved.
+ 69%|██████▉   | 138/200 [2:09:52<59:08, 57.23s/it]  
+After Epoch 138:: Training Accuracy: 78.57% | Validation Accuracy: 79.49% | ECE: 0.0403
+ 70%|██████▉   | 139/200 [2:10:47<57:38, 56.69s/it]
+After Epoch 139:: Training Accuracy: 78.53% | Validation Accuracy: 78.07% | ECE: 0.0731
+ 70%|███████   | 140/200 [2:11:41<55:47, 55.79s/it]
+After Epoch 140:: Training Accuracy: 78.46% | Validation Accuracy: 81.14% | ECE: 0.0294
+ 70%|███████   | 141/200 [2:12:34<54:15, 55.18s/it]
+After Epoch 141:: Training Accuracy: 78.16% | Validation Accuracy: 77.36% | ECE: 0.0433
+ 71%|███████   | 142/200 [2:13:28<52:57, 54.78s/it]
+After Epoch 142:: Training Accuracy: 78.50% | Validation Accuracy: 80.36% | ECE: 0.0350
+ 72%|███████▏  | 143/200 [2:14:36<55:36, 58.54s/it]
+After Epoch 143:: Training Accuracy: 78.72% | Validation Accuracy: 80.92% | ECE: 0.0320
+ 72%|███████▏  | 144/200 [2:15:29<53:20, 57.14s/it]
+After Epoch 144:: Training Accuracy: 78.50% | Validation Accuracy: 80.30% | ECE: 0.0416
+ 72%|███████▎  | 145/200 [2:16:26<52:05, 56.83s/it]
+After Epoch 145:: Training Accuracy: 78.88% | Validation Accuracy: 78.48% | ECE: 0.0374
+ 73%|███████▎  | 146/200 [2:17:19<50:16, 55.87s/it]
+After Epoch 146:: Training Accuracy: 78.73% | Validation Accuracy: 80.31% | ECE: 0.0396
+ 74%|███████▎  | 147/200 [2:18:13<48:48, 55.26s/it]
+After Epoch 147:: Training Accuracy: 78.65% | Validation Accuracy: 81.37% | ECE: 0.0268
+ 74%|███████▍  | 148/200 [2:19:07<47:30, 54.82s/it]
+After Epoch 148:: Training Accuracy: 78.74% | Validation Accuracy: 81.15% | ECE: 0.0359
+ 74%|███████▍  | 149/200 [2:20:13<49:26, 58.16s/it]
+After Epoch 149:: Training Accuracy: 78.69% | Validation Accuracy: 80.47% | ECE: 0.0168
+ 75%|███████▌  | 150/200 [2:21:09<48:00, 57.62s/it]
+After Epoch 150:: Training Accuracy: 78.26% | Validation Accuracy: 80.81% | ECE: 0.0281
+ 76%|███████▌  | 151/200 [2:22:03<46:04, 56.42s/it]
+After Epoch 151:: Training Accuracy: 78.61% | Validation Accuracy: 77.44% | ECE: 0.0293
+ 76%|███████▌  | 152/200 [2:22:57<44:31, 55.66s/it]
+After Epoch 152:: Training Accuracy: 78.40% | Validation Accuracy: 81.45% | ECE: 0.0210
+ 76%|███████▋  | 153/200 [2:23:50<43:10, 55.11s/it]
+After Epoch 153:: Training Accuracy: 78.39% | Validation Accuracy: 76.41% | ECE: 0.0421
+ 77%|███████▋  | 154/200 [2:24:44<41:57, 54.74s/it]
+After Epoch 154:: Training Accuracy: 78.45% | Validation Accuracy: 78.37% | ECE: 0.0399
+ 78%|███████▊  | 155/200 [2:25:49<43:19, 57.77s/it]
+After Epoch 155:: Training Accuracy: 78.79% | Validation Accuracy: 79.81% | ECE: 0.0427
+ 78%|███████▊  | 156/200 [2:26:45<41:52, 57.11s/it]
+After Epoch 156:: Training Accuracy: 78.69% | Validation Accuracy: 79.15% | ECE: 0.0602
+ 78%|███████▊  | 157/200 [2:27:38<40:11, 56.08s/it]
+After Epoch 157:: Training Accuracy: 78.30% | Validation Accuracy: 78.29% | ECE: 0.0482
+ 79%|███████▉  | 158/200 [2:28:32<38:47, 55.42s/it]
+After Epoch 158:: Training Accuracy: 78.69% | Validation Accuracy: 81.91% | ECE: 0.0236
+ 80%|███████▉  | 159/200 [2:29:26<37:29, 54.88s/it]
+After Epoch 159:: Training Accuracy: 78.58% | Validation Accuracy: 81.28% | ECE: 0.0306
+ 80%|████████  | 160/200 [2:30:26<37:42, 56.57s/it]
+After Epoch 160:: Training Accuracy: 78.98% | Validation Accuracy: 83.03% | ECE: 0.0209
+Best model saved.
+ 80%|████████  | 161/200 [2:31:21<36:20, 55.91s/it]
+After Epoch 161:: Training Accuracy: 78.42% | Validation Accuracy: 80.05% | ECE: 0.0416
+ 81%|████████  | 162/200 [2:32:14<34:58, 55.22s/it]
+After Epoch 162:: Training Accuracy: 78.40% | Validation Accuracy: 78.94% | ECE: 0.0484
+ 82%|████████▏ | 163/200 [2:33:08<33:47, 54.78s/it]
+After Epoch 163:: Training Accuracy: 78.44% | Validation Accuracy: 80.16% | ECE: 0.0350
+ 82%|████████▏ | 164/200 [2:34:02<32:43, 54.53s/it]
+After Epoch 164:: Training Accuracy: 78.63% | Validation Accuracy: 79.83% | ECE: 0.0594
+ 82%|████████▎ | 165/200 [2:34:56<31:42, 54.35s/it]
+After Epoch 165:: Training Accuracy: 78.20% | Validation Accuracy: 79.26% | ECE: 0.0179
+ 83%|████████▎ | 166/200 [2:36:02<32:45, 57.80s/it]
+After Epoch 166:: Training Accuracy: 78.32% | Validation Accuracy: 79.64% | ECE: 0.0613
+ 84%|████████▎ | 167/200 [2:36:57<31:20, 56.99s/it]
+After Epoch 167:: Training Accuracy: 78.63% | Validation Accuracy: 82.16% | ECE: 0.0225
+ 84%|████████▍ | 168/200 [2:37:51<29:57, 56.18s/it]
+After Epoch 168:: Training Accuracy: 78.30% | Validation Accuracy: 81.42% | ECE: 0.0414
+ 84%|████████▍ | 169/200 [2:38:46<28:44, 55.62s/it]
+After Epoch 169:: Training Accuracy: 78.46% | Validation Accuracy: 75.86% | ECE: 0.0643
+ 85%|████████▌ | 170/200 [2:39:39<27:32, 55.08s/it]
+After Epoch 170:: Training Accuracy: 78.50% | Validation Accuracy: 82.28% | ECE: 0.0455
+ 86%|████████▌ | 171/200 [2:40:43<27:50, 57.62s/it]
+After Epoch 171:: Training Accuracy: 78.43% | Validation Accuracy: 80.25% | ECE: 0.0316
+ 86%|████████▌ | 172/200 [2:41:44<27:18, 58.53s/it]
+After Epoch 172:: Training Accuracy: 78.51% | Validation Accuracy: 77.16% | ECE: 0.0641
+ 86%|████████▋ | 173/200 [2:42:38<25:46, 57.27s/it]
+After Epoch 173:: Training Accuracy: 78.38% | Validation Accuracy: 80.17% | ECE: 0.0363
+ 87%|████████▋ | 174/200 [2:43:32<24:21, 56.21s/it]
+After Epoch 174:: Training Accuracy: 78.87% | Validation Accuracy: 81.11% | ECE: 0.0414
+ 88%|████████▊ | 175/200 [2:44:26<23:07, 55.51s/it]
+After Epoch 175:: Training Accuracy: 78.62% | Validation Accuracy: 81.65% | ECE: 0.0279
+ 88%|████████▊ | 176/200 [2:45:28<23:03, 57.64s/it]
+After Epoch 176:: Training Accuracy: 78.45% | Validation Accuracy: 81.46% | ECE: 0.0335
+ 88%|████████▊ | 177/200 [2:46:26<22:06, 57.66s/it]
+After Epoch 177:: Training Accuracy: 78.47% | Validation Accuracy: 79.77% | ECE: 0.0386
+ 89%|████████▉ | 178/200 [2:47:27<21:31, 58.70s/it]
+After Epoch 178:: Training Accuracy: 78.32% | Validation Accuracy: 77.35% | ECE: 0.0829
+ 90%|████████▉ | 179/200 [2:48:20<20:00, 57.14s/it]
+After Epoch 179:: Training Accuracy: 78.54% | Validation Accuracy: 79.56% | ECE: 0.0351
+ 90%|█████████ | 180/200 [2:49:14<18:42, 56.10s/it]
+After Epoch 180:: Training Accuracy: 78.36% | Validation Accuracy: 80.64% | ECE: 0.0274
+ 90%|█████████ | 181/200 [2:50:08<17:32, 55.39s/it]
+After Epoch 181:: Training Accuracy: 78.56% | Validation Accuracy: 80.61% | ECE: 0.0215
+ 91%|█████████ | 182/200 [2:51:12<17:24, 58.01s/it]
+After Epoch 182:: Training Accuracy: 78.71% | Validation Accuracy: 78.51% | ECE: 0.0385
+ 92%|█████████▏| 183/200 [2:52:06<16:04, 56.73s/it]
+After Epoch 183:: Training Accuracy: 78.52% | Validation Accuracy: 78.87% | ECE: 0.0317
+ 92%|█████████▏| 184/200 [2:53:06<15:23, 57.72s/it]
+After Epoch 184:: Training Accuracy: 78.48% | Validation Accuracy: 79.60% | ECE: 0.0336
+ 92%|█████████▎| 185/200 [2:53:59<14:06, 56.46s/it]
+After Epoch 185:: Training Accuracy: 78.42% | Validation Accuracy: 80.42% | ECE: 0.0363
+ 93%|█████████▎| 186/200 [2:54:53<12:58, 55.62s/it]
+After Epoch 186:: Training Accuracy: 78.50% | Validation Accuracy: 81.38% | ECE: 0.0284
+slurmstepd: error: *** JOB 62963100 ON cdr246 CANCELLED AT 2025-06-08T17:13:32 DUE TO TIME LIMIT ***
