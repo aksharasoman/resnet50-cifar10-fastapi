@@ -5,6 +5,6 @@ numpy
 matplotlib
 tqdm
 
-# For Erorr Analysis and Visualization
+# For Error Analysis and Visualization
 torchmetrics
-opencv-python #for grad-cam
+grad-cam
