@@ -6,4 +6,4 @@
 module load python/3.12 
 module load scipy-stack
 source ~/.venvs/venv/bin/activate
-python train_classConditionalAugmentation.py
+python train.py

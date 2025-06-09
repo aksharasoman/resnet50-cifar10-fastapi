@@ -1,0 +1,143 @@
+/home/ojus001/.venvs/venv/lib/python3.12/site-packages/torch/utils/data/dataloader.py:624: UserWarning: This DataLoader will create 2 worker processes in total. Our suggested max number of worker in current system is 1, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(
+1. Data Loading...
+2.Model Loading...
+3. Training...
+  0%|          | 0/30 [00:00<?, ?it/s]  3%|▎         | 1/30 [01:03<30:40, 63.45s/it]
+Training Accuracy after Epoch 1: 60.40%
+
+Validation Accuracy after Epoch 1: 78.06%
+Best model saved.
+  7%|▋         | 2/30 [01:48<24:35, 52.69s/it]
+Training Accuracy after Epoch 2: 76.39%
+
+Validation Accuracy after Epoch 2: 81.41%
+Best model saved.
+ 10%|█         | 3/30 [02:33<22:09, 49.25s/it]
+Training Accuracy after Epoch 3: 79.80%
+
+Validation Accuracy after Epoch 3: 83.97%
+Best model saved.
+ 13%|█▎        | 4/30 [03:18<20:36, 47.54s/it]
+Training Accuracy after Epoch 4: 81.55%
+
+Validation Accuracy after Epoch 4: 84.39%
+Best model saved.
+ 17%|█▋        | 5/30 [04:04<19:29, 46.78s/it]
+Training Accuracy after Epoch 5: 82.73%
+
+Validation Accuracy after Epoch 5: 84.73%
+Best model saved.
+ 20%|██        | 6/30 [04:57<19:39, 49.14s/it]
+Training Accuracy after Epoch 6: 83.74%
+
+Validation Accuracy after Epoch 6: 84.77%
+Best model saved.
+ 23%|██▎       | 7/30 [05:43<18:21, 47.87s/it]
+Training Accuracy after Epoch 7: 85.07%
+
+Validation Accuracy after Epoch 7: 85.61%
+Best model saved.
+ 27%|██▋       | 8/30 [06:28<17:16, 47.12s/it]
+Training Accuracy after Epoch 8: 85.89%
+
+Validation Accuracy after Epoch 8: 86.12%
+Best model saved.
+ 30%|███       | 9/30 [07:14<16:18, 46.61s/it]
+Training Accuracy after Epoch 9: 86.55%
+
+Validation Accuracy after Epoch 9: 86.45%
+Best model saved.
+ 33%|███▎      | 10/30 [07:58<15:21, 46.05s/it]
+Training Accuracy after Epoch 10: 87.40%
+
+Validation Accuracy after Epoch 10: 86.35%
+ 37%|███▋      | 11/30 [08:43<14:28, 45.73s/it]
+Training Accuracy after Epoch 11: 87.88%
+
+Validation Accuracy after Epoch 11: 86.32%
+ 40%|████      | 12/30 [09:30<13:47, 46.00s/it]
+Training Accuracy after Epoch 12: 88.42%
+
+Validation Accuracy after Epoch 12: 86.75%
+Best model saved.
+ 43%|████▎     | 13/30 [10:16<13:04, 46.13s/it]
+Training Accuracy after Epoch 13: 89.21%
+
+Validation Accuracy after Epoch 13: 87.12%
+Best model saved.
+ 47%|████▋     | 14/30 [11:02<12:13, 45.83s/it]
+Training Accuracy after Epoch 14: 89.46%
+
+Validation Accuracy after Epoch 14: 86.98%
+ 50%|█████     | 15/30 [11:47<11:25, 45.70s/it]
+Training Accuracy after Epoch 15: 89.98%
+
+Validation Accuracy after Epoch 15: 87.62%
+Best model saved.
+ 53%|█████▎    | 16/30 [12:33<10:39, 45.68s/it]
+Training Accuracy after Epoch 16: 90.27%
+
+Validation Accuracy after Epoch 16: 87.73%
+Best model saved.
+ 57%|█████▋    | 17/30 [13:18<09:52, 45.61s/it]
+Training Accuracy after Epoch 17: 90.79%
+
+Validation Accuracy after Epoch 17: 87.20%
+ 60%|██████    | 18/30 [14:04<09:07, 45.59s/it]
+Training Accuracy after Epoch 18: 91.09%
+
+Validation Accuracy after Epoch 18: 87.42%
+ 63%|██████▎   | 19/30 [14:52<08:30, 46.44s/it]
+Training Accuracy after Epoch 19: 91.50%
+
+Validation Accuracy after Epoch 19: 87.53%
+ 67%|██████▋   | 20/30 [15:38<07:42, 46.26s/it]
+Training Accuracy after Epoch 20: 92.05%
+
+Validation Accuracy after Epoch 20: 87.16%
+ 70%|███████   | 21/30 [16:24<06:55, 46.16s/it]
+Training Accuracy after Epoch 21: 93.40%
+
+Validation Accuracy after Epoch 21: 88.12%
+Best model saved.
+ 73%|███████▎  | 22/30 [17:09<06:07, 45.98s/it]
+Training Accuracy after Epoch 22: 93.97%
+
+Validation Accuracy after Epoch 22: 88.26%
+Best model saved.
+ 77%|███████▋  | 23/30 [17:55<05:20, 45.83s/it]
+Training Accuracy after Epoch 23: 94.33%
+
+Validation Accuracy after Epoch 23: 88.00%
+ 80%|████████  | 24/30 [18:40<04:34, 45.72s/it]
+Training Accuracy after Epoch 24: 94.70%
+
+Validation Accuracy after Epoch 24: 88.40%
+Best model saved.
+ 83%|████████▎ | 25/30 [19:27<03:49, 45.90s/it]
+Training Accuracy after Epoch 25: 95.02%
+
+Validation Accuracy after Epoch 25: 87.83%
+ 87%|████████▋ | 26/30 [20:11<03:02, 45.53s/it]
+Training Accuracy after Epoch 26: 95.14%
+
+Validation Accuracy after Epoch 26: 88.07%
+ 90%|█████████ | 27/30 [20:57<02:16, 45.44s/it]
+Training Accuracy after Epoch 27: 95.25%
+
+Validation Accuracy after Epoch 27: 88.39%
+ 93%|█████████▎| 28/30 [21:44<01:32, 46.00s/it]
+Training Accuracy after Epoch 28: 95.60%
+
+Validation Accuracy after Epoch 28: 87.80%
+ 97%|█████████▋| 29/30 [22:29<00:45, 45.76s/it]
+Training Accuracy after Epoch 29: 95.75%
+
+Validation Accuracy after Epoch 29: 88.22%
+100%|██████████| 30/30 [23:15<00:00, 45.86s/it]100%|██████████| 30/30 [23:15<00:00, 46.52s/it]
+
+Training Accuracy after Epoch 30: 95.87%
+
+Validation Accuracy after Epoch 30: 88.60%
+Best model saved.
