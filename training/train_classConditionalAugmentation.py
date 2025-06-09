@@ -46,7 +46,7 @@ class ClassConditionalAugDataset(Dataset):
             image = self.default_transform(image)
         return image, label
     
-def load_data(is_train = True, is_class_condAug = False, batch_size: int = 64) -> DataLoader:
+def load_data(is_train = True, batch_size: int = 64) -> DataLoader:
     """
     Loads and preprocesses the CIFAR-10 training dataset.
 
@@ -67,8 +67,11 @@ def load_data(is_train = True, is_class_condAug = False, batch_size: int = 64) -
         
         # Default transform for all classes
         default_transform = transforms.Compose([
+            transforms.RandomCrop(32, padding=4),
             transforms.RandomHorizontalFlip(),
             transforms.ToTensor(),
+            transforms.Normalize(mean=(0.4914, 0.4822, 0.4465),
+                                std=(0.2023, 0.1994, 0.2010))            
         ])
 
         # Stronger transform for confusing classes
@@ -78,6 +81,8 @@ def load_data(is_train = True, is_class_condAug = False, batch_size: int = 64) -
             transforms.ColorJitter(brightness=0.3, contrast=0.3, saturation=0.3),
             transforms.RandomErasing(p=0.5),
             transforms.ToTensor(),
+            transforms.Normalize(mean=(0.4914, 0.4822, 0.4465),
+                                std=(0.2023, 0.1994, 0.2010))
         ])
         # Wrapped dataset with class-conditional transform
         custom_train_dataset = ClassConditionalAugDataset(
@@ -98,7 +103,7 @@ def load_data(is_train = True, is_class_condAug = False, batch_size: int = 64) -
         ])
 
         data_set = torchvision.datasets.CIFAR10(
-            root='./data', train=is_train, download=True, transform=transform)
+            root='./data', train=False, download=True, transform=transform)
         data_loader = DataLoader(data_set, batch_size=batch_size, shuffle=is_train, num_workers=2)
         
     return data_loader
