@@ -76,7 +76,7 @@ def load_data(is_train = True, batch_size: int = 64) -> DataLoader:
 
         # Stronger transform for confusing classes
         strong_transform = transforms.Compose([
-            transforms.RandomResizedCrop(32, scale=(0.6, 1.0)),
+            transforms.RandomCrop(32, padding=4),
             transforms.RandomHorizontalFlip(),
             transforms.ColorJitter(brightness=0.3, contrast=0.3, saturation=0.3),
             transforms.RandomErasing(p=0.5),
@@ -91,7 +91,7 @@ def load_data(is_train = True, batch_size: int = 64) -> DataLoader:
             strong_transform=strong_transform,
             default_transform=default_transform
         )
-        data_loader = DataLoader(custom_train_dataset, batch_size=64, shuffle=True)
+        data_loader = DataLoader(custom_train_dataset, batch_size=batch_size, shuffle=True)
 
     else: 
         # For testing, we only normalize the images
@@ -104,7 +104,7 @@ def load_data(is_train = True, batch_size: int = 64) -> DataLoader:
 
         data_set = torchvision.datasets.CIFAR10(
             root='./data', train=False, download=True, transform=transform)
-        data_loader = DataLoader(data_set, batch_size=batch_size, shuffle=is_train, num_workers=2)
+        data_loader = DataLoader(data_set, batch_size=batch_size, shuffle=False, num_workers=2)
         
     return data_loader
 
