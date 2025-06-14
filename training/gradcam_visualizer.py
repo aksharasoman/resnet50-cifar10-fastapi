@@ -64,7 +64,7 @@ misclassified_idxs = torch.where(preds != labels)[0][:NUM_SAMPLES]
 
 # ---------- PREPARE CAM ----------
 def get_cam(model, target_layer, input_tensor, target_category):
-    cam = GradCAM(model=model, target_layers=[target_layer], use_cuda=device.type=='cuda')
+    cam = GradCAM(model=model, target_layers=[target_layer])
     grayscale_cam = cam(input_tensor=input_tensor, targets=[ClassifierOutputTarget(target_category)])
     return grayscale_cam[0]
 
