@@ -91,8 +91,8 @@ def visualize_sample(model, idx, save_path):
     cam_pred_resized = np.array(Image.fromarray((cam_pred * 255).astype(np.uint8)).resize((224, 224))) / 255.0
     cam_true_resized = np.array(Image.fromarray((cam_true * 255).astype(np.uint8)).resize((224, 224))) / 255.0
 
-    cam_image_pred = show_cam_on_image(img_resized, cam_pred_resized, use_rgb=True)
-    cam_image_true = show_cam_on_image(img_resized, cam_true_resized, use_rgb=True)
+    cam_image_pred = show_cam_on_image(img_resized, cam_pred_resized, use_rgb=True, image_weight=0.3)
+    cam_image_true = show_cam_on_image(img_resized, cam_true_resized, use_rgb=True, image_weight=0.3)
 
     # Combine horizontally
     combined = np.hstack((cam_image_pred, cam_image_true))
