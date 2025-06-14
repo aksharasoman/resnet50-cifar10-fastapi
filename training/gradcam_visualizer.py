@@ -1,103 +1,107 @@
 '''
-Here’s a complete and reusable Grad-CAM script that:
-Loads your saved ResNet-50 model and predictions.
-Identifies misclassified samples.
-Generates Grad-CAM visualizations for both:Predicted class & True class
-Saves them side-by-side in a single image.
+A complete, reusable Grad-CAM script using the pytorch-grad-cam library:
+1. Loads your best_model.pth ResNet-50 with partial fine-tuning.
+2. Loads your best_eval_probs_targets.pth for predictions.
+3. Identifies misclassified samples.
+4. Uses Grad-CAM to visualize both predicted and true classes.
+5. Saves side-by-side CAMs with the original image.
 '''
 import torch
-import torch.nn as nn
-import torchvision.models as models
-import torchvision.transforms as T
-from torchvision.datasets import CIFAR10
-from torchcam.methods import GradCAM
-from torchcam.utils import overlay_mask
-from torchvision.transforms.functional import to_pil_image
-from PIL import Image, ImageDraw, ImageFont
+import torchvision
+import torchvision.transforms as transforms
+import torch.nn.functional as F
+import numpy as np
 import os
+from PIL import Image
+import matplotlib.pyplot as plt
+from torchvision.models import resnet50
+from pytorch_grad_cam import GradCAM
+from pytorch_grad_cam.utils.model_targets import ClassifierOutputTarget
+from pytorch_grad_cam.utils.image import show_cam_on_image
+from pytorch_grad_cam.utils.image import preprocess_image
 
-# Constants
-MODEL_PATH = "dev_stage_code/best_model.pth"
-EVAL_DATA_PATH = "dev_stage_code/best_eval_probs_targets.pth"
-SAVE_DIR = "cam_outputs"
-NUM_SAMPLES = 10
-CLASSES = ['airplane', 'automobile', 'bird', 'cat', 'deer',
-           'dog', 'frog', 'horse', 'ship', 'truck']
+from torch.utils.data import DataLoader, Subset
+from torchvision.datasets import CIFAR10
 
-# Transforms
-normalize = T.Normalize((0.4914, 0.4822, 0.4465),
-                        (0.2023, 0.1994, 0.2010))
-inv_normalize = T.Normalize(mean=[-0.4914 / 0.2023, -0.4822 / 0.1994, -0.4465 / 0.2010],
-                            std=[1 / 0.2023, 1 / 0.1994, 1 / 0.2010])
-transform = T.Compose([T.ToTensor(), normalize])
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-# Load CIFAR-10 test set
-test_set = CIFAR10(root="./data", train=False, transform=transform, download=True)
+# ---------- CONFIG ----------
+MODEL_PATH = "best_model.pth"
+EVAL_PATH = "best_eval_probs_targets.pth"
+SAVE_DIR = "gradcam_outputs"
+NUM_SAMPLES = 20  # number of misclassified samples to visualize
+os.makedirs(SAVE_DIR, exist_ok=True)
 
-# Load model
-model = models.resnet50() #no weight specified => no pretrained model loaded
-model.fc = nn.Sequential(
-    nn.Dropout(0.5),
-    nn.Linear(model.fc.in_features, 10)
-)
-model.load_state_dict(torch.load(MODEL_PATH, map_location="cpu"))
-model.eval()
+# ---------- LOAD MODEL ----------
+def load_model():
+    model = resnet50(weights=None)
+    num_features = model.fc.in_features
+    model.fc = torch.nn.Sequential(
+        torch.nn.Dropout(0.5),
+        torch.nn.Linear(num_features, 10)
+    )
+    model.load_state_dict(torch.load(MODEL_PATH, map_location=device))
+    model.to(device).eval()
+    return model
 
-# Grad-CAM setup
-cam_extractor = GradCAM(model, target_layer="layer4")
+# ---------- LOAD DATA ----------
+transform = transforms.Compose([
+    transforms.ToTensor(),
+    transforms.Normalize(mean=[0.4914, 0.4822, 0.4465],
+                         std=[0.2023, 0.1994, 0.2010])
+])
+unnormalize = transforms.Normalize(mean=[-0.4914/0.2023, -0.4822/0.1994, -0.4465/0.2010],
+                                   std=[1/0.2023, 1/0.1994, 1/0.2010])
 
-# Load eval outputs
-data = torch.load(EVAL_DATA_PATH)
+test_dataset = CIFAR10(root='./data', train=False, download=True, transform=transform)
+
+# ---------- LOAD PREDICTIONS ----------
+data = torch.load(EVAL_PATH, map_location=device)
 probs = data["probs"]
 labels = data["targets"]
 confidences, preds = torch.max(probs, dim=1)
+misclassified_idxs = torch.where(preds != labels)[0][:NUM_SAMPLES]
 
-# Get misclassified indices
-misclassified_idxs = (preds != labels).nonzero(as_tuple=True)[0]
+# ---------- PREPARE CAM ----------
+def get_cam(model, target_layer, input_tensor, target_category):
+    cam = GradCAM(model=model, target_layers=[target_layer], use_cuda=device.type=='cuda')
+    grayscale_cam = cam(input_tensor=input_tensor, targets=[ClassifierOutputTarget(target_category)])
+    return grayscale_cam[0]
 
+# ---------- VISUALIZE ----------
+def visualize_sample(model, idx, save_path):
+    img_tensor, label = test_dataset[idx]
+    input_tensor = img_tensor.unsqueeze(0).to(device)
 
-def generate_cam_image(idx):
-    os.makedirs(SAVE_DIR, exist_ok=True)
+    pred = preds[idx].item()
+    true = labels[idx].item()
 
-    # Get image and ground truth
-    img_tensor, true_label = test_set[idx]
-    input_tensor = img_tensor.unsqueeze(0)
-    pred = model(input_tensor).argmax(dim=1).item()
-
-    # Unnormalize image
-    img_vis = inv_normalize(img_tensor)
-    img_pil = to_pil_image(img_vis)
-
+    target_layer = model.layer4[-1]
+    
     # Grad-CAM for predicted class
-    cam_pred = cam_extractor(pred, model(input_tensor))[0]
-    cam_pred = to_pil_image(cam_pred.squeeze(0), mode='F')
-    overlay_pred = overlay_mask(img_pil, cam_pred, alpha=0.5)
+    cam_pred = get_cam(model, target_layer, input_tensor, target_category=pred)
 
     # Grad-CAM for true class
-    cam_true = cam_extractor(true_label, model(input_tensor))[0]
-    cam_true = to_pil_image(cam_true.squeeze(0), mode='F')
-    overlay_true = overlay_mask(img_pil, cam_true, alpha=0.5)
+    cam_true = get_cam(model, target_layer, input_tensor, target_category=true)
 
-    # Annotate and combine
-    def annotate(image, text):
-        annotated = image.copy()
-        draw = ImageDraw.Draw(annotated)
-        draw.text((5, 5), text, fill="white")
-        return annotated
+    # Unnormalize for visualization
+    img = unnormalize(img_tensor).permute(1, 2, 0).cpu().numpy()
+    img = np.clip(img, 0, 1)
 
-    annotated_pred = annotate(overlay_pred, f"Pred: {CLASSES[pred]}")
-    annotated_true = annotate(overlay_true, f"True: {CLASSES[true_label]}")
+    cam_image_pred = show_cam_on_image(img, cam_pred, use_rgb=True)
+    cam_image_true = show_cam_on_image(img, cam_true, use_rgb=True)
 
-    combined = Image.new("RGB", (annotated_pred.width * 2, annotated_pred.height))
-    combined.paste(annotated_pred, (0, 0))
-    combined.paste(annotated_true, (annotated_pred.width, 0))
+    combined = np.hstack((cam_image_pred, cam_image_true))
+    Image.fromarray(combined).save(save_path)
 
-    # Save image
-    combined.save(os.path.join(SAVE_DIR, f"idx{idx}_true{CLASSES[true_label]}_pred{CLASSES[pred]}.png"))
-
+# ---------- MAIN ----------
+def main():
+    model = load_model()
+    print(f"Generating Grad-CAM for {len(misclassified_idxs)} misclassified samples...")
+    for i, idx in enumerate(misclassified_idxs):
+        save_path = os.path.join(SAVE_DIR, f"cam_{i:03d}_true{labels[idx]}_pred{preds[idx]}.png")
+        visualize_sample(model, idx.item(), save_path)
+    print("Done.")
 
 if __name__ == "__main__":
-    print(f"Generating Grad-CAMs for {NUM_SAMPLES} misclassified samples...")
-    for idx in misclassified_idxs[:NUM_SAMPLES]:
-        generate_cam_image(idx.item())
-    print(f"Saved visualizations to '{SAVE_DIR}/'")
+    main()
