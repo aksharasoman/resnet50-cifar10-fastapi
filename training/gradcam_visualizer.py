@@ -26,8 +26,8 @@ from torchvision.datasets import CIFAR10
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # ---------- CONFIG ----------
-MODEL_PATH = "best_model.pth"
-EVAL_PATH = "best_eval_probs_targets.pth"
+MODEL_PATH = "dev_stage_code/best_model.pth"
+EVAL_PATH = "dev_stage_code/best_eval_probs_targets.pth"
 SAVE_DIR = "gradcam_outputs"
 NUM_SAMPLES = 20  # number of misclassified samples to visualize
 os.makedirs(SAVE_DIR, exist_ok=True)
