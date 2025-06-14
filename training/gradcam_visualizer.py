@@ -12,7 +12,7 @@ import torchvision.transforms as transforms
 import torch.nn.functional as F
 import numpy as np
 import os
-from PIL import Image
+from PIL import Image, ImageDraw, ImageFont
 import matplotlib.pyplot as plt
 from torchvision.models import resnet50
 from pytorch_grad_cam import GradCAM
@@ -77,22 +77,39 @@ def visualize_sample(model, idx, save_path):
     true = labels[idx].item()
 
     target_layer = model.layer4[-1]
-    
-    # Grad-CAM for predicted class
-    cam_pred = get_cam(model, target_layer, input_tensor, target_category=pred)
 
-    # Grad-CAM for true class
+    # Grad-CAM
+    cam_pred = get_cam(model, target_layer, input_tensor, target_category=pred)
     cam_true = get_cam(model, target_layer, input_tensor, target_category=true)
 
-    # Unnormalize for visualization
+    # Unnormalize and resize image for better visualization
     img = unnormalize(img_tensor).permute(1, 2, 0).cpu().numpy()
     img = np.clip(img, 0, 1)
+    img_resized = np.array(Image.fromarray((img * 255).astype(np.uint8)).resize((224, 224))) / 255.0
 
-    cam_image_pred = show_cam_on_image(img, cam_pred, use_rgb=True)
-    cam_image_true = show_cam_on_image(img, cam_true, use_rgb=True)
+    # Resize CAMs
+    cam_pred_resized = np.array(Image.fromarray((cam_pred * 255).astype(np.uint8)).resize((224, 224))) / 255.0
+    cam_true_resized = np.array(Image.fromarray((cam_true * 255).astype(np.uint8)).resize((224, 224))) / 255.0
 
+    cam_image_pred = show_cam_on_image(img_resized, cam_pred_resized, use_rgb=True)
+    cam_image_true = show_cam_on_image(img_resized, cam_true_resized, use_rgb=True)
+
+    # Combine horizontally
     combined = np.hstack((cam_image_pred, cam_image_true))
-    Image.fromarray(combined).save(save_path)
+    combined_image = Image.fromarray(combined)
+
+    # Add text
+    draw = ImageDraw.Draw(combined_image)
+    font_size = 20
+    try:
+        font = ImageFont.truetype("arial.ttf", font_size)
+    except:
+        font = ImageFont.load_default()
+
+    draw.text((10, 5), f"Predicted: {pred}", fill="white", font=font)
+    draw.text((240, 5), f"True: {true}", fill="white", font=font)
+
+    combined_image.save(save_path)
 
 # ---------- MAIN ----------
 def main():
