@@ -38,7 +38,7 @@ def load_data(is_train = True, batch_size: int = 64) -> DataLoader:
             transforms.RandomHorizontalFlip(),
             transforms.ToTensor(),
             transforms.Normalize(mean=(0.4914, 0.4822, 0.4465), # precomputed mean and std dev values for CIFAR-10
-                                 std=(0.2023, 0.1994, 0.2010))
+                                 std=(0.2470, 0.2435, 0.2616))
         ])
     else:
         # For testing, we only normalize the images
@@ -46,7 +46,7 @@ def load_data(is_train = True, batch_size: int = 64) -> DataLoader:
         transform = transforms.Compose([
             transforms.ToTensor(),
             transforms.Normalize(mean=(0.4914, 0.4822, 0.4465),
-                                std=(0.2023, 0.1994, 0.2010))
+                                std=(0.2470, 0.2435, 0.2616))
         ])
 
     data_set = torchvision.datasets.CIFAR10(
