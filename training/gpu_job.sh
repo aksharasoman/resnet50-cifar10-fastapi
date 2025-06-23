@@ -6,4 +6,4 @@
 module load python/3.12 
 module load scipy-stack
 source ~/.venvs/venv/bin/activate
-python gradcam_visualizer.py
+python train.py
